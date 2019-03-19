@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style src="styles.css" />
+
+<link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game Tutorial - AngularJS</title>
+</head>
+<body>
+<div class="stylee">sdasadsad</div>
+<div ng-app="">
+<div class="row" ng-repeat="column in board">
+  <div class="column"
+       ng-style="{'background-color': setStyling($parent.$index, $index)}"
+       ng-repeat="row in column track by $index"
+  ></div>
+</div>
+<script>
+    function setupBoard() {
+  $scope.board = [];
+  for (var i = 0; i < BOARD_SIZE; i++) {
+    $scope.board[i] = [];
+    for (var j = 0; j < BOARD_SIZE; j++) {
+      $scope.board[i][j] = false;
+    }
+  }
+}
+
+$scope.setStyling = function(col, row) {
+  if (isGameOver) {
+    return COLORS.GAME_OVER;
+  } else if (fruit.x == row && fruit.y == col) {
+    return COLORS.FRUIT;
+  } else if (snake.parts[0].x == row && snake.parts[0].y == col) {
+    return COLORS.SNAKE_HEAD;
+  } else if ($scope.board[col][row] === true) {
+    return COLORS.SNAKE_BODY;
+  }
+  return COLORS.BOARD;
+};
+
+</script>
+</div>
+</body>
+</html>
